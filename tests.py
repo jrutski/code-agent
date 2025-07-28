@@ -1,22 +1,36 @@
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
+from functions.write_file import write_file
 
-
-# print(get_file_content("calculator", "lorem.txt"))
 
 if __name__ == "__main__":
     test_cases = [
-        ("calculator", "main.py"),
-        ("calculator", "pkg/calculator.py"),
-        ("calculator", "/bin/cat"),
-        ("calculator", "pkg/does_not_exist.py")
+        ("calculator", "lorem.txt", "wait, this isn't lorem ipsum"),
+        ("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet"),
+        ("calculator", "/tmp/temp.txt", "this should not be allowed")
     ]
 
-    for working_dir, file_path in test_cases:
+    for working_dir, file_path, content in test_cases:
         print(f"Result for {file_path}:")
-        result = get_file_content(working_dir, file_path)
+        result = write_file(working_dir, file_path, content)
         print(result)
         print()
+
+# print(get_file_content("calculator", "lorem.txt"))
+
+# if __name__ == "__main__":
+#    test_cases = [
+#        ("calculator", "main.py"),
+#        ("calculator", "pkg/calculator.py"),
+#        ("calculator", "/bin/cat"),
+#        ("calculator", "pkg/does_not_exist.py")
+#    ]
+#
+#    for working_dir, file_path in test_cases:
+#        print(f"Result for {file_path}:")
+#        result = get_file_content(working_dir, file_path)
+#        print(result)
+#        print()
 
 #
 # if __name__ == "__main__":
