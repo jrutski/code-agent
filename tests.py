@@ -1,20 +1,38 @@
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
 from functions.write_file import write_file
+from functions.run_python_file import run_python_file
 
 
 if __name__ == "__main__":
     test_cases = [
-        ("calculator", "lorem.txt", "wait, this isn't lorem ipsum"),
-        ("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet"),
-        ("calculator", "/tmp/temp.txt", "this should not be allowed")
+        ("calculator", "main.py"),
+        ("calculator", "main.py", ["3 + 5"]),
+        ("calculator", "tests.py"),
+        ("calculator", "../main.py"),
+        ("calculator", "nonexistent.py")
     ]
 
-    for working_dir, file_path, content in test_cases:
+    for item in test_cases:
+        working_dir, file_path, *rest = item
+        args = rest[0] if rest else []
         print(f"Result for {file_path}:")
-        result = write_file(working_dir, file_path, content)
+        result = run_python_file(working_dir, file_path, args)
         print(result)
         print()
+
+# if __name__ == "__main__":
+#    test_cases = [
+#        ("calculator", "lorem.txt", "wait, this isn't lorem ipsum"),
+#        ("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet"),
+#        ("calculator", "/tmp/temp.txt", "this should not be allowed")
+#    ]
+#
+#    for working_dir, file_path, content in test_cases:
+#        print(f"Result for {file_path}:")
+#        result = write_file(working_dir, file_path, content)
+#        print(result)
+#        print()
 
 # print(get_file_content("calculator", "lorem.txt"))
 
