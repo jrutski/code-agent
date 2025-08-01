@@ -43,7 +43,7 @@ def main():
     while True:
         i += 1
         if i > MAX_ITER:
-            print(f"Maximum iterations reached.")
+            print("Maximum iterations reached.")
             sys.exit(1)
 
         try:
